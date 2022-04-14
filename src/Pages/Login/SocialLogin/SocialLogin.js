@@ -5,6 +5,7 @@ import auth from '../../../firebase.init';
 import logo from '../../../images/google.svg'
 import fb from '../../../images/icons8-facebook.svg'
 import gh from '../../../images/icons8-github.svg'
+import Loading from '../../Shared/Loading/Loading';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -12,6 +13,10 @@ const SocialLogin = () => {
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate = useNavigate()
     let errorElement;
+
+    if(loading || loading1){
+        return <Loading />
+    }
 
     if (error || error1) {
         errorElement =
